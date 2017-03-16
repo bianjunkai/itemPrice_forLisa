@@ -24,6 +24,7 @@ def get_reference():
     reference = None
     if os.path.isfile(EXCELFILE):
         reference = xlrd.open_workbook(EXCELFILE)
+    print("Datasheet is :%s"%EXCELFILE)
     return reference
 
 """
@@ -36,7 +37,6 @@ def get_price(ref, target):
     target = target
     table = reference.sheet_by_index(0)
     nrows = table.nrows
-    ncols = table.ncols
     maletargetlist = table.col_values(1)
     malepricelist = table.col_values(2)
     femaletagetlist = table.col_values(3)
@@ -52,7 +52,7 @@ def get_price(ref, target):
 
 def get_data_file():
     file = DATAFILE
-    filepath = input(u'请将xls文件路径粘贴进去，如果程序里已经指定了文件则按Enter键继续：')
+    filepath = input('请将xls文件路径粘贴进去，如果程序里已经指定了文件则按Enter键继续')
     is_valid = False            # 验证文件
     try:
         filepath = [file, filepath][filepath != '']
@@ -94,13 +94,10 @@ def get_data(datafile, ref):
     return "******处理完毕************"
 
 
-
-
-
 def main():
     reference = get_reference()
     data = get_data_file()
-    get_data (data,reference)
+    get_data(data,reference)
 
 if __name__ == '__main__':
     main()
